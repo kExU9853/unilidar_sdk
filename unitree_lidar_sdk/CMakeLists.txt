@@ -13,6 +13,11 @@ link_directories(lib/${CMAKE_SYSTEM_PROCESSOR})
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib/${CMAKE_SYSTEM_PROCESSOR})
 
+add_executable(stop
+  examples/stop.cpp
+)
+target_link_libraries(stop  libunitree_lidar_sdk.a )
+
 add_executable(example_lidar
   examples/example_lidar.cpp
 )
