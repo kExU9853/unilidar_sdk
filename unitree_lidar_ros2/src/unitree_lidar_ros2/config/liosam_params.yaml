@@ -1,0 +1,78 @@
+# LIO-SAM Configuration Parameters
+# This file contains parameters for LIO-SAM to work with Unitree L1 LiDAR
+
+# Point Cloud Filtering Parameters
+pointCloudTopic: "/unilidar/cloud"
+imuTopic: "/unilidar/imu"
+
+# Frame IDs
+lidarFrame: "unilidar_lidar"
+imuFrame: "unilidar_imu"
+odomFrame: "odom"
+mapFrame: "map"
+baseLinkFrame: "base_link"
+
+# Point Cloud Filtering - Limit to 0-180 degrees
+# Filter points based on their angle from the LiDAR center
+# This will effectively limit the field of view to 180 degrees
+pointCloudFilter:
+  # Enable point cloud filtering
+  enabled: true
+  
+  # Filter based on angle from LiDAR center (in radians)
+  # 0 degrees = 0 radians, 180 degrees = π radians
+  minAngle: 0.0        # Minimum angle in radians (0 degrees)
+  maxAngle: 3.14159    # Maximum angle in radians (180 degrees = π)
+  
+  # Filter based on distance from LiDAR center
+  minDistance: 0.1     # Minimum distance in meters
+  maxDistance: 50.0    # Maximum distance in meters
+  
+  # Filter based on height (z-axis)
+  minHeight: -2.0      # Minimum height in meters
+  maxHeight: 5.0       # Maximum height in meters
+
+# Feature Extraction Parameters
+edgeThreshold: 0.1
+surfThreshold: 0.1
+odometrySurfLeafSize: 0.2
+mappingCornerLeafSize: 0.2
+mappingSurfLeafSize: 0.2
+
+# IMU Parameters
+imuAccNoise: 0.01
+imuGyrNoise: 0.001
+imuAccBiasN: 0.0001
+imuGyrBiasN: 0.00001
+imuGravity: 9.80511
+imuRPYWeight: 0.01
+
+# Mapping Parameters
+mappingCornerLeafSize: 0.2
+mappingSurfLeafSize: 0.2
+
+# Loop Closure Parameters
+loopClosureEnableFlag: true
+loopClosureFrequency: 1.0
+surroundingKeyframeSize: 50
+historyKeyframeSearchRadius: 7.0
+historyKeyframeSearchTimeDiff: 3.0
+historyKeyframeSearchNum: 25
+historyKeyframeFitnessScore: 0.3
+
+# Visualization Parameters
+savePCD: true
+savePCDDirectory: "/tmp/lio_sam_maps"
+
+# Additional Filtering Parameters
+removeOutlier: true
+outlierThreshold: 2.0
+
+# Voxel Grid Filter Parameters
+voxelLeafSize: 0.1
+
+# Statistical Outlier Removal
+statisticalOutlierRemoval:
+  enabled: true
+  meanK: 50
+  stddevMulThresh: 1.0
